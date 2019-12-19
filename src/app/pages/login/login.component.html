@@ -1,0 +1,58 @@
+<mat-card class="example-card">
+  <form class="example-form">
+<!--   <mat-form-field class="example-full-width">
+          <input matInput placeholder="Ingresar con:" disabled value="Email y Contraseña">
+  </mat-form-field> 
+ <br>-->
+  <H2>Login</H2>
+
+   <mat-form-field>
+          <input matInput placeholder="email"   [(ngModel)]="email" required name="email">
+  </mat-form-field>
+  <br>
+
+   <mat-form-field>
+              <input matInput placeholder="password"  type="password" [(ngModel)]="password" required name="password">
+  </mat-form-field>
+  <br>
+  <br>
+ 
+  
+  <button mat-raised-button color="primary" (click)="cargarAdmin()" >
+      <span>Admin</span><mat-icon>person</mat-icon></button>
+  <button mat-raised-button color="primary" (click)="cargarCliente()" >
+        <span>Cliente</span><mat-icon>person</mat-icon></button>    
+        <br> <br>
+  <button mat-raised-button color="primary" (click)="cargarRecepcionista()" >
+        <span>Recepcionista</span><mat-icon>person</mat-icon></button>
+  <button mat-raised-button color="primary" (click)="cargarEspecialista()" >
+          <span>Especialista</span><mat-icon>person</mat-icon></button>
+
+        <br>
+        <br>  
+  <app-captcha (resolved)="resolved($event)" (bactivate)="activar($event)"></app-captcha>
+     <br>
+     <div *ngIf="bactivate; else elseBlock">
+      <button mat-raised-button color="primary" (click)="onSubmitLogin()" >
+          <span>Loguear  </span><mat-icon>email</mat-icon></button>
+     </div>
+     <ng-template #elseBlock>
+      <button mat-raised-button color="Disabled" (click)="onMensaje()">
+          <span>Loguear  </span><mat-icon>email</mat-icon></button>
+     </ng-template>
+     <br>
+   <!--   <button mat-raised-button color="primary" (click)="onSubmitLogin()" >
+        <span>Loguear  </span><mat-icon>email</mat-icon></button> -->
+
+  <br>
+  <span class="errormje">{{ msjerror }}</span>
+
+ <!--  <button mat-raised-button color="warn" (click)="onSubmitLoginPublic()"><span>Ingreso Público </span><mat-icon>public</mat-icon></button> -->
+  <br>
+  <br>
+  <span><a   [routerLink]="['../register']">
+      <mat-icon>create</mat-icon>
+      <span> Registar Usuario</span>
+  </a></span>
+  </form>
+  </mat-card>

@@ -1,0 +1,33 @@
+<div #contenido>  
+
+ <mat-form-field>
+        <input matInput placeholder="Buscar por Tipo"  [(ngModel)]="Buscar" required name="Buscar" >
+    </mat-form-field>
+ <table id="Tabla">
+<thead id="titulo"> 
+    <tr>
+        <td  *ngFor="let items of arrayUsuario"> {{ items | titlecase }} </td>
+    </tr>
+ </thead> 
+ <tbody id="cuerpo">
+    <tr  *ngFor="let item of usuarios | filter:Buscar" app-fila [item]="item" (Cargar)="openDialog($event)">
+    </tr>
+</tbody>
+
+</table>
+</div> <!-- //contenido -->
+<br>
+
+<ngx-qrcode id="qrCodeImagen" [qrc-element-type]="elementType" [qrc-value]="text_qr"></ngx-qrcode>
+<div class="example-button-row">
+<button mat-raised-button color="primary" aria-label="PDF" (click)="exportarPDF()">
+    <mat-icon>image</mat-icon>
+    <span>Esportar a PDF</span>
+</button> <span></span>
+<button mat-raised-button color="primary" aria-label="CSV" (click)="exportarCSV()">
+    <mat-icon>archive</mat-icon>
+    <span>Esportar a CSV</span>
+</button>
+</div>
+
+

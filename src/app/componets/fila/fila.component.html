@@ -1,0 +1,14 @@
+
+<td > {{item.marca}} </td>
+<td > {{item.modelo}} </td>
+<td > {{item.year}} </td>
+<td > {{item.kilometros}} </td>
+<td > {{item.tipo}} </td>
+<td > <img src="{{item.foto}}" alt="foto" class="imagen"></td>
+<td > {{item.concesionaria}} </td>
+<td>
+    <button mat-stroked-button color="accent" id="{{item.concesionaria}}" (click)="manejadora(item)">
+            <mat-icon>update</mat-icon>
+            <span>QR</span>
+        </button>
+    </td>

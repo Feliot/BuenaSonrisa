@@ -1,0 +1,45 @@
+
+<mat-card-title>GRILLA TOTAL DE PROFECIONALES</mat-card-title>
+
+<div #contenido>  
+
+    <mat-form-field>
+           <input matInput placeholder="Buscar por Tipo"  [(ngModel)]="Buscar" required name="Buscar" >
+       </mat-form-field>
+    <table id="Tabla">
+   <thead id="titulo"> 
+       <tr>
+           <td  *ngFor="let items of arrayUsuario"> {{ items | titlecase }} </td>
+       </tr>
+    </thead> 
+    <tbody id="cuerpo">
+       <tr  *ngFor="let item of Listado | filter:Buscar">
+        <td > {{item.email}} </td>
+        <td > <img src="{{item.foto}}" alt="foto" class="imagen"></td>
+        <td > {{item.tipo}} </td>
+        <td > {{item.especialidad}} </td>
+        <td>
+            <button mat-stroked-button color="accent" id="{{item.id}}" (click)="actualizar(item)">
+                    <mat-icon>update</mat-icon>
+                    <span>Actualizar</span>
+                </button>
+            </td> 
+    </tr>
+   </tbody>
+   
+   </table>
+   </div> <!-- //contenido -->
+   <br>
+   
+   <ngx-qrcode id="qrCodeImagen" [qrc-element-type]="elementType" [qrc-value]="text_qr"></ngx-qrcode>
+   <div class="example-button-row">
+   <button mat-raised-button color="primary" aria-label="PDF" (click)="exportarPDF()">
+       <mat-icon>image</mat-icon>
+       <span>Esportar a PDF</span>
+   </button> <span></span>
+   <button mat-raised-button color="primary" aria-label="CSV" (click)="exportarCSV()">
+       <mat-icon>archive</mat-icon>
+       <span>Esportar a CSV</span>
+   </button>
+   </div>
+   

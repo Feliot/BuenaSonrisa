@@ -1,0 +1,55 @@
+
+<mat-card class="example-card">
+    <form class="example-form">
+        <H2>Registrase con email y clave</H2>
+  <p id="comentario">El administrador luego lo categorizará</p>
+
+       <!--  <input  placeholder="email" type="text" id="email1"  [(ngModel)]="email" name="email" required> -->
+     <!--    <input  placeholder="password" type="password" [(ngModel)]="password" name="password" required> -->
+     <mat-form-field>
+            <input matInput placeholder="email"   [(ngModel)]="email" required name="email" (keyup)="validarCamposIngreso()">
+    </mat-form-field> 
+    <br>   
+     <mat-form-field>
+    <input matInput placeholder="password"  type="password" [(ngModel)]="password" required name="password" (keyup)="validarCamposIngreso()">
+    </mat-form-field>
+   
+   <!--      <input type="file"  id="avatar" name="avatar"
+        accept="image/png, image/jpeg" (change)="onUpload($event)" (change)="validarCamposIngreso()">  -->
+    <div class="contenedorImagen">  <h3>Seleccione una imagen</h3>
+        <div *ngIf="urlImage | async as url" >
+                <img [src]="url" alt="foto" id="fotosubida" (click)="fileUploader.click()">
+        </div>
+    <input type="file"  id="avatar" name="avatar" #fileUploader
+    accept="image/png, image/jpeg" (change)="onUpload($event)" (change)="validarCamposIngreso()">
+    <br>
+        <div *ngIf="bimagen; else elseBorrar">
+        <button mat-raised-button color="primary" (click)="borrarImagen()">
+            <span>Borrar </span><mat-icon>image</mat-icon></button>
+        </div>
+        <ng-template #elseBorrar>
+            <button mat-raised-button color="Disabled" (click)="onNoBorrar()">
+                <span>Borrar </span><mat-icon>image</mat-icon></button>
+        </ng-template>
+        <br>
+        <br>
+    </div>
+
+    <div *ngIf="bactivate; else elseBlock">
+        <button mat-raised-button color="primary" (click)="onSubmitRegister()">
+            <span>Registar  </span><mat-icon>email</mat-icon></button>
+   </div>
+   <ng-template #elseBlock>
+    <button mat-raised-button color="Disabled" (click)="onMensaje()">
+        <span>Registar  </span><mat-icon>email</mat-icon></button>
+    </ng-template>
+    <br> <br>
+    <span class="errormje">{{ msjerror }}</span> 
+     <br>
+    <span><button mat-button  [routerLink]="['../login']">
+        <mat-icon>Login</mat-icon>
+        <span>Volver a Login</span>
+    </button></span>
+    </form>
+
+    </mat-card>

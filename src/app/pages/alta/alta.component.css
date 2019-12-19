@@ -1,0 +1,18 @@
+#fotosubida{
+    min-width: 200px;
+    height: 200px;
+}
+.example-card{
+    max-width: 500px;
+    justify-content: center;
+    text-align: center;
+}
+.full-width {
+    width: 70%;
+    padding: 3pt;
+  }
+.contenedorImagen{
+    justify-content: center;
+    border: rgba(214, 221, 221, 0.473) 1px groove;
+    margin: 10%;
+  }

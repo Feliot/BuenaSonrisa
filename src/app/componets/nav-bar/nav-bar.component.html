@@ -1,0 +1,68 @@
+<mat-toolbar color="primary" class="toolbar"> 
+    <mat-toolbar-row>
+      <span></span><mat-icon>blur_on</mat-icon> 
+      <span class="titulo"> &nbsp;Buena sonrisa&nbsp; </span>  
+      <mat-icon>blur_on</mat-icon><span>  </span>
+      
+      <span class="example-spacer"> </span>
+      <img  *ngIf="isLogin" src="{{ myUserCol.foto }}" alt="foto" id="fotoPerfil">
+    <!--   <button mat-icon-button [routerLink]="['home']"><span>Menu</span> </button> -->
+      <button mat-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+          <span id="nameUser" *ngIf="isLogin"> {{ myUserCol.tipo.substring(0, 8) | uppercase  }}..</span> <!-- limitado a 10 caracteres para celular -->
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item [routerLink]="['home']" style="color:blue" *ngIf="isLogin" id="NombreMenu">
+              <span>    Usuario: {{ myUserCol.tipo | titlecase }}</span>
+          </button>
+          <button mat-menu-item [routerLink]="['home']" *ngIf="isLogin">
+            <mat-icon>home</mat-icon>
+            <span>Home</span>
+          </button>
+          <button mat-menu-item [routerLink]="['login']"  *ngIf="!isLogin">
+              <mat-icon>assignment_ind</mat-icon>
+              <span>Login</span>
+          </button>
+
+          <button mat-menu-item [routerLink]="['grilla']" *ngIf="isLogin">
+            <mat-icon>details</mat-icon>
+            <span>Grilla</span>
+          </button>
+          <button mat-menu-item [routerLink]="['alta']" *ngIf="isLogin">
+            <mat-icon>person_add_disabled</mat-icon>
+            <span>Altas</span>
+          </button>
+          <button mat-menu-item (click)="onClickLogout()" style="color:red" *ngIf="isLogin">
+            <mat-icon>logout</mat-icon>
+            <span>Desloguearse</span>
+          </button>
+<!--         <button mat-menu-item [matMenuTriggerFor]="juegos" [routerLink]="['juegos']" *ngIf="isLogin">Juegos</button>
+        <mat-menu #juegos="matMenu" xPosition="before">
+          <button mat-menu-item [routerLink]="['juegos/anagrama']">
+            <mat-icon>videogame_asset</mat-icon>
+            <span>Anagrama</span>
+          </button>
+          <button mat-menu-item [routerLink]="['juegos/tateti']">
+            <mat-icon>games</mat-icon>
+            <span>Tateti</span>
+          </button>
+          <button mat-menu-item [routerLink]="['juegos/mapatesoro']">
+            <mat-icon>my_location</mat-icon>
+            <span>Mapa del tesoro</span>
+          </button>
+      </mat-menu> -->
+  <!--       <button mat-menu-item [matMenuTriggerFor]="cliente" [routerLink]="['cliente']" *ngIf="isLogin">Cliente</button>
+        <mat-menu #cliente="matMenu" xPosition="before">
+          <button mat-menu-item [routerLink]="['cliente/clienteLogin']">
+            <mat-icon>Login</mat-icon>
+            <span>Login</span>
+          </button>
+          <button mat-menu-item [routerLink]="['cliente/crear']">
+            <mat-icon>create</mat-icon>
+            <span>Crear Cliente</span>
+          </button>
+      </mat-menu> -->
+    </mat-menu>
+
+    </mat-toolbar-row>
+  </mat-toolbar>

@@ -1,0 +1,51 @@
+
+<mat-card class="example-card">
+        <form class="example-form">
+                <H2>Alta de Vehiculos   </H2>
+        <br> 
+        <div class="contenedorImagen">  <h3>Seleccione una imagen</h3>
+                <div *ngIf="urlImage | async as url" >
+                        <img [src]="url" alt="foto" id="fotosubida" (click)="fileUploader.click()">
+                    </div>
+            <input type="file"  id="avatar" name="avatar" #fileUploader
+            accept="image/png, image/jpeg" (change)="onUpload($event)"> 
+            
+            <br>
+            <button mat-raised-button color="primary" (click)="borrarImagen()">Borrar</button>
+        
+        </div>
+           <!--  <input  placeholder="email" type="text" id="email1"  [(ngModel)]="email" name="email" required> -->
+         <!--    <input  placeholder="password" type="password" [(ngModel)]="password" name="password" required> -->
+         <mat-form-field class="full-width">
+                <input matInput placeholder="marca"   [(ngModel)]="vehiculo.marca" required name="marca">
+        </mat-form-field> 
+     
+        <mat-form-field class="full-width">
+                <input matInput placeholder="modelo"   [(ngModel)]="vehiculo.modelo" required name="modelo">
+        </mat-form-field> 
+   
+        <mat-form-field  class="full-width">
+                <input matInput placeholder="año" maxlength='4'  [(ngModel)]="vehiculo.year" required type="number"  name="year">
+        </mat-form-field> 
+         
+        <mat-form-field class="full-width">
+                <input matInput placeholder="kilometros"   [(ngModel)]="vehiculo.kilometros" required type="number" name="kilometros">
+        </mat-form-field> 
+      
+        <mat-form-field class="full-width">
+        <mat-select placeholder="tipo" [(ngModel)]="vehiculo.tipo" name="tipo">
+                <mat-option [value]="tipo" *ngFor="let tipo of tipos">{{tipo}}</mat-option>
+        </mat-select>
+        </mat-form-field>
+        
+ 
+<br>  
+    <br>
+        <button mat-raised-button color="primary" (click)="onSubmitAlta()">
+            <span>Alta de Vehiculo</span><mat-icon>person</mat-icon></button>
+<br>
+        <span class="errormje">{{ msjerror }}</span> 
+         <br>
+       
+        </form>
+</mat-card>

@@ -1,0 +1,60 @@
+.example-button-row button,
+.example-button-row a {
+  margin-right: 5px;
+}
+.example-icon {
+  padding: 0 10px;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+#nameUser{
+  font-size: auto;
+}
+.toolbar{
+  font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  margin: 0;
+  background-image: -webkit-gradient(linear,0% 0%,100% 0%,color-stop(0, rgb(40, 58, 221)),color-stop(50%,cyan ),color-stop(100%,rgb(56, 9, 131)));
+/*   background-image: url("../assets/imagenes/game2.jpg");
+  background-size: 300px 100px; */
+}
+.contenedor {
+/*   width: 80%;
+  display: flex;
+ 
+  margin: 10px auto 20%;*/
+  display: flex;
+  justify-content: center;
+ /*  align-items: center; */
+  text-align: center;
+  background-color: rgba(250, 250, 250, 0.6);
+  float: none;
+  margin: auto;
+  overflow: auto; 
+  width: 79%;
+  height: auto;
+  /* border: 1px solid #ccc; */
+  box-shadow: 0 0 20px 1px royalblue;
+  border-radius: 5px;
+
+/*   padding: 0 8px;
+  overflow: auto; 
+  border: 1px solid #ccc; */
+}
+#NombreMenu{
+ /*  font-variant: small-caps; */
+  font-weight: bold;
+  font-size: 16px;
+  align-content: center;
+  /* text-align: center; */
+}
+
+.titulo{
+  font-size: auto;
+  width: auto;
+ /*  font-family: medium-content-sans-serif-font, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;*/
+} 
+#fotoPerfil{
+  height: 50px;
+  width: 50px;
+}

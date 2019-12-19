@@ -1,0 +1,21 @@
+.example-container {
+    display: flex;
+/*     flex-direction: column; */
+    align-content: center;
+    justify-content: center;
+   align-content: center;
+   text-align: center;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+  .errormje{
+    color: red;
+    font-size: 12px;
+  }
+  .example-card{
+    min-width: 300px;;
+    width: 100%;
+    text-align: center;
+  }
