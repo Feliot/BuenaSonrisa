@@ -24,9 +24,9 @@
               <span>Login</span>
           </button>
 
-          <button mat-menu-item [routerLink]="['grilla']" *ngIf="isLogin">
+          <button mat-menu-item [routerLink]="['grilla']" *ngIf="isAdmin">
             <mat-icon>details</mat-icon>
-            <span>Grilla</span>
+            <span>ABM; Admin</span>
           </button>
           <button mat-menu-item [routerLink]="['alta']" *ngIf="isLogin">
             <mat-icon>person_add_disabled</mat-icon>

@@ -11,6 +11,7 @@ export class miUsuario implements Usuario {
     }
 }
 export interface UserCol {
+    id?:string;
     email?: string;
     foto?: string;
     tipo?: string;

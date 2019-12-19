@@ -13,7 +13,7 @@ export class FilterPipe implements PipeTransform {
     const resultado=[];
    
   for(const valor of value){
-    if(valor.tipo.toLowerCase().indexOf(arg.toLowerCase()) >-1){
+    if(valor.especialidad.toLowerCase().indexOf(arg.toLowerCase()) >-1){
       resultado.push(valor);
     };
   };

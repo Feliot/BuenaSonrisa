@@ -2,22 +2,35 @@
 <mat-card-title>GRILLA TOTAL DE PROFECIONALES</mat-card-title>
 
 <div #contenido>  
-
+    <br>
+<!-- 
     <mat-form-field>
            <input matInput placeholder="Buscar por Tipo"  [(ngModel)]="Buscar" required name="Buscar" >
-       </mat-form-field>
-    <table id="Tabla">
+       </mat-form-field> -->
+    <table id="miTabla">
    <thead id="titulo"> 
        <tr>
            <td  *ngFor="let items of arrayUsuario"> {{ items | titlecase }} </td>
        </tr>
     </thead> 
     <tbody id="cuerpo">
-       <tr  *ngFor="let item of Listado | filter:Buscar">
+       <tr  *ngFor="let item of Listado">
         <td > {{item.email}} </td>
         <td > <img src="{{item.foto}}" alt="foto" class="imagen"></td>
-        <td > {{item.tipo}} </td>
-        <td > {{item.especialidad}} </td>
+        <td >
+        <mat-form-field >
+            <mat-select placeholder="tipo" [(ngModel)]="item.tipo" name="tipo">
+                    <mat-option [value]="tipo" *ngFor="let tipo of tipos">{{tipo}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        </td>
+        <td >
+            <mat-form-field >
+                <mat-select placeholder="especialidad" [(ngModel)]="item.especialidad" name="especialidad">
+                        <mat-option [value]="especialidad" *ngFor="let especialidad of especialidades">{{especialidad}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </td>
         <td>
             <button mat-stroked-button color="accent" id="{{item.id}}" (click)="actualizar(item)">
                     <mat-icon>update</mat-icon>

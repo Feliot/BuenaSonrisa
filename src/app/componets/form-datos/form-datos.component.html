@@ -1,9 +1,9 @@
 <div #contenido>  
 
  <mat-form-field>
-        <input matInput placeholder="Buscar por Tipo"  [(ngModel)]="Buscar" required name="Buscar" >
+        <input matInput placeholder="Buscar por especialidad"  [(ngModel)]="Buscar" required name="Buscar" >
     </mat-form-field>
- <table id="Tabla">
+ <table id="miTabla">
 <thead id="titulo"> 
     <tr>
         <td  *ngFor="let items of arrayUsuario"> {{ items | titlecase }} </td>

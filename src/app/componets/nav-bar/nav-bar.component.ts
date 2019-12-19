@@ -13,7 +13,7 @@ export class NavBarComponent implements OnInit {
   token;
   public myUsuario : Usuario;
   public myUserCol: UserCol;
-
+  public isAdmin : boolean;
   public isLogin : boolean;
   constructor(private miAuth: UserServiceService, private usersS: UserColServiceService){
     this.myUserCol  = new miUserCol("","","","");
@@ -37,9 +37,15 @@ export class NavBarComponent implements OnInit {
             .subscribe(r=>{
               this.usersS.setUser(r[0]);
              this.myUserCol= this.usersS.getUser();
+             console.log(this.myUserCol.tipo)
+             if (this.myUserCol.tipo == 'administrador'){ 
+               this.isAdmin = true;}
+             else{this.isAdmin = false;}
             })
            console.log(this.myUsuario);
            this.isLogin = true;
+          
+          
         if(!user.email){
         }else{
           this.myUsuario.email =  user.email;
@@ -51,6 +57,7 @@ export class NavBarComponent implements OnInit {
        }else{
         console.log("isLogin = false");
         this.isLogin = false;
+        this.isAdmin = false;
       }
     })
   }

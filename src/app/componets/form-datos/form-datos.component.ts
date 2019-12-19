@@ -48,7 +48,7 @@ public Buscar="";
   }
 
    // exportarPDF
-  public exportarPDF() {
+   public exportarPDF() {
     let doc = new jsPDF({
       orientation: 'landscape',
       unit: 'pt',
@@ -56,29 +56,22 @@ public Buscar="";
     });
     doc.setFontSize(22);
     doc.setFontStyle('cursiva');
-    doc.text('Listado de Concesionarias', 240, 30);
-    let manejadorEspecial = {
-      '#editor': function(element, renderer){
-        return true;
-      }
-    }
-    doc.autoTable({head:"#titulo",html: "#cuerpo"});
-    doc.save('Concesionarias.pdf');
+    doc.text('Listado de Turnos', 240, 30);
+
+    doc.autoTable({html:"#miTabla",
+    headStyles :{minCellHeight :15, haling:'center'},
+    bodyStyles :{minCellHeight :15, haling:'center', fillColor: [0, 250, 0], textColor: [0, 20, 255]}
+  });
+    doc.save('Turnos.pdf');
   }
   exportarCSV(){
-    /* generate worksheet */
-/* generate workbook and add the worksheet */
-//Libreria https://github.com/SheetJS/sheetjs
-const wb = XLSX.utils.book_new()
-const ws = XLSX.utils.json_to_sheet(this.usuarios)
-XLSX.utils.book_append_sheet(wb, ws, 'test')
-XLSX.writeFile(wb, 'Concesionarias.csv')
-
+      /* generate worksheet */
+  /* generate workbook and add the worksheet */
+  //Libreria https://github.com/SheetJS/sheetjs
+  const wb = XLSX.utils.book_new()
+  const ws = XLSX.utils.json_to_sheet(this.usuarios)
+  XLSX.utils.book_append_sheet(wb, ws, 'test')
+  XLSX.writeFile(wb, 'turnos.csv')
   }
     
 }
-/* @Component({
-  selector: 'dialog-content-example-dialog',
-  templateUrl: 'dialog-content-example-dialog.html',
-})
-export class DialogContentExampleDialog {} */

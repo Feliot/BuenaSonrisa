@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { UserCol } from '../models/usuario'
+import { UserCol, Usuario } from '../models/usuario'
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -20,7 +20,7 @@ export class UserColServiceService {
     this.usuarios = this.usuariosCollection.snapshotChanges().pipe(
       map(actions=> actions.map(a =>{
         const data= a.payload.doc.data() as UserCol;
-        /* const id = a.payload.doc.id; */
+        const id = a.payload.doc.id;
         return { ...data};
       })
     ),);
@@ -32,7 +32,7 @@ export class UserColServiceService {
         return this.usuarios = this.usuariosCollection.snapshotChanges().pipe(map(actions=>{
           return actions.map(a =>{
             const data= a.payload.doc.data() as UserCol;
-            /* data.id = a.payload.doc.id; */
+            data.id = a.payload.doc.id;
             return data;
           })
         }),)
@@ -50,7 +50,13 @@ export class UserColServiceService {
           return data;
         })
       }),)
-      }
+      } 
+    updateUser(user1:UserCol){
+     /*  console.log(this.user.email); */
+     this.db.collection('UserCols').doc(user1.id).update(user1);
+    /*  console.log(this.user.email); */
+    }
+
    DevolverUsuarioFiltro(filtro: string,  campo:string){
         return new Promise((resolve, reject) => {
       resolve(this.GetUsersFiltro(filtro, campo)), err=> reject(err)})
