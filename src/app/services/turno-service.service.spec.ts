@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { VehiculoServiceService } from './vehiculo-service.service';
+import { VehiculoServiceService } from './turno-service.service';
 
 describe('VehiculoServiceService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

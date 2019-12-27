@@ -15,6 +15,8 @@ export class NavBarComponent implements OnInit {
   public myUserCol: UserCol;
   public isAdmin : boolean;
   public isLogin : boolean;
+  public isCliente : boolean;
+  public isEspecialista : boolean;
   constructor(private miAuth: UserServiceService, private usersS: UserColServiceService){
     this.myUserCol  = new miUserCol("","","","");
     if (localStorage.getItem('token')) {
@@ -40,7 +42,15 @@ export class NavBarComponent implements OnInit {
              console.log(this.myUserCol.tipo)
              if (this.myUserCol.tipo == 'administrador'){ 
                this.isAdmin = true;}
-             else{this.isAdmin = false;}
+              else if(this.myUserCol.tipo == 'especialista'){
+                this.isEspecialista= true;
+              }
+              else if(this.myUserCol.tipo == 'cliente'){
+                this.isCliente= true;
+              }
+             else{this.isAdmin = false;
+              this.isEspecialista= false;
+              this.isCliente= false;}
             })
            console.log(this.myUsuario);
            this.isLogin = true;
@@ -58,6 +68,8 @@ export class NavBarComponent implements OnInit {
         console.log("isLogin = false");
         this.isLogin = false;
         this.isAdmin = false;
+        this.isCliente= false;
+        this.isEspecialista= false;
       }
     })
   }

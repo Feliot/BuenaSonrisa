@@ -8,6 +8,7 @@ import 'jspdf-autotable';
 import * as XLSX from 'xlsx';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { QrcodeComponent } from 'src/app/utils/mi-qrcode/qrcode/qrcode.component';
+import { miTurno } from 'src/app/models/sonrisa';
 
 @Component({
   selector: 'app-form-datos',
@@ -19,7 +20,7 @@ export class FormDatosComponent implements AfterContentInit {
   public qrCodeImagen="";
 @ViewChild('contenido', {static: false}) contenidoRef: ElementRef;
 public Buscar="";
-  public usuario = new miUserCol('','');
+  public usuario = new miTurno('','');
 /*   private posisionUid = this.arrayUsuario.indexOf('uid');
   columnsToDisplay: string[] = this.arrayUsuario.slice(0, this.posisionUid); */
  public arrayUsuario;

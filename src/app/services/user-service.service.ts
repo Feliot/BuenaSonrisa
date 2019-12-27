@@ -64,7 +64,7 @@ resolve(this.getAuth()
   this.user.email = user.email;
   this.user.displayName= user.displayName;
   this.user.photoURL= user.photoURL;
-  console.log(this.user);
+ /*  console.log(this.user); */
 })), err => reject(err)
   })
 }

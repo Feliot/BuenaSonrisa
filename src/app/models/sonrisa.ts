@@ -12,14 +12,15 @@ export class miConsultorio implements Consultorio {
 export interface Turno{
     id?:string;
     estado?:string;
-    horario?:Date;
+    fecha?:string;
+    hora?:string;
     usuario?:string;
     profecional?:string;
     sala?:string;
 }
 export class miTurno implements Turno {
-    constructor(public id?:string, public estado?: string,
-        public horario?: Date, public usuario?: string,
+    constructor(public estado?: string, public fecha?:string,
+        public hora?: string, public usuario?: string,
         public profecional?:string,
         public sala?:string){
     }
@@ -27,12 +28,15 @@ export class miTurno implements Turno {
 export interface Reseña{
     id?:string;
     profesional?:string;
-    reseña?:number;
-    fecha?:Date;
+    foto?:string;
+    nota?:number;
+    fecha?:string;
+    hora?:string;
+    comentario?:string;
 }
 export class miReseña implements Reseña {
-    constructor(public id?:string, public profesional?: string,
-        public reseña?: number, public fecha?:Date ){
+    constructor( public profesional?: string, public foto?:string,
+        public nota?: number, public fecha?:string,public hora?:string , public comentario?:string ){
     }
 }
 

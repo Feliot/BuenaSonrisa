@@ -1,11 +1,13 @@
 <mat-toolbar color="primary" class="toolbar"> 
     <mat-toolbar-row>
+      <img src="../assets/risa.jpg" alt="foto" id="fotoP">
       <span></span><mat-icon>blur_on</mat-icon> 
       <span class="titulo"> &nbsp;Buena sonrisa&nbsp; </span>  
       <mat-icon>blur_on</mat-icon><span>  </span>
-      
+    
       <span class="example-spacer"> </span>
-      <img  *ngIf="isLogin" src="{{ myUserCol.foto }}" alt="foto" id="fotoPerfil">
+      
+      
     <!--   <button mat-icon-button [routerLink]="['home']"><span>Menu</span> </button> -->
       <button mat-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
           <mat-icon>more_vert</mat-icon>
@@ -26,12 +28,21 @@
 
           <button mat-menu-item [routerLink]="['grilla']" *ngIf="isAdmin">
             <mat-icon>details</mat-icon>
-            <span>ABM; Admin</span>
+            <span>ABM Admin</span>
           </button>
-          <button mat-menu-item [routerLink]="['alta']" *ngIf="isLogin">
+          <button mat-menu-item [routerLink]="['reseñas']" *ngIf="isLogin">
+            <mat-icon>message</mat-icon>
+            <span>Reseñas</span>
+          </button>
+          <button mat-menu-item [routerLink]="['atenderTurnos']" *ngIf="isEspecialista">
+            <mat-icon>details</mat-icon>
+            <span>Atender Turnos</span>
+          </button>
+
+    <!--       <button mat-menu-item [routerLink]="['alta']" *ngIf="isLogin">
             <mat-icon>person_add_disabled</mat-icon>
             <span>Altas</span>
-          </button>
+          </button> -->
           <button mat-menu-item (click)="onClickLogout()" style="color:red" *ngIf="isLogin">
             <mat-icon>logout</mat-icon>
             <span>Desloguearse</span>
@@ -63,6 +74,7 @@
           </button>
       </mat-menu> -->
     </mat-menu>
-
+    <img  *ngIf="isLogin" src="{{ myUserCol.foto }}" alt="foto" id="fotoPerfil">
     </mat-toolbar-row>
+  
   </mat-toolbar>

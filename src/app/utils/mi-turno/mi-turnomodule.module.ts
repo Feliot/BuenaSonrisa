@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TurnoComponent } from './turno/turno.component';
-import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { MaterialModule } from '../../material';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [  TurnoComponent ],
   exports: [ TurnoComponent ],
   imports: [
-    CommonModule, NgxQRCodeModule
+    CommonModule, MaterialModule, FormsModule,
+    ReactiveFormsModule
   ],
   entryComponents: [TurnoComponent]
 })

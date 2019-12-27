@@ -1,11 +1,10 @@
 
-<td > {{item.marca}} </td>
-<td > {{item.modelo}} </td>
-<td > {{item.year}} </td>
-<td > {{item.kilometros}} </td>
-<td > {{item.tipo}} </td>
+
+<td > {{item.estado}} </td>
 <td > <img src="{{item.foto}}" alt="foto" class="imagen"></td>
-<td > {{item.concesionaria}} </td>
+<td > {{item.fecha}} </td>
+<td > {{item.hora}} </td>
+<td > {{item.profecional}} </td>
 <td>
     <button mat-stroked-button color="accent" id="{{item.concesionaria}}" (click)="manejadora(item)">
             <mat-icon>update</mat-icon>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Consultorio } from '../models/sonrisa'
+import { Turno, miTurno } from '../models/sonrisa'
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -8,19 +8,19 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class VehiculoServiceService {
-  usuariosCollection : AngularFirestoreCollection<Consultorio>;
-  usuarios: Observable<Consultorio[]>;
-  usuarioDoc: AngularFirestoreDocument<Consultorio>;
-  user: Consultorio = {};
-  listadoDeUsuarios: Consultorio[];
+  usuariosCollection : AngularFirestoreCollection<Turno>;
+  usuarios: Observable<Turno[]>;
+  usuarioDoc: AngularFirestoreDocument<Turno>;
+  user: Turno = {};
+  listadoDeUsuarios: Turno[];
   constructor(public db: AngularFirestore) {
     /* this.usuarios = this.db.collection('usuarios').valueChanges(); */
-    this.usuariosCollection = this.db.collection('Consultorios');
+    this.usuariosCollection = this.db.collection('turnos');
 
     this.usuarios = this.usuariosCollection.snapshotChanges().pipe(
       map(actions=> actions.map(a =>{
-        const data= a.payload.doc.data() as Consultorio;
-        /* const id = a.payload.doc.id; */
+        const data= a.payload.doc.data() as Turno;
+        const id = a.payload.doc.id;
         return { ...data};
       })
     ),);
@@ -30,8 +30,8 @@ export class VehiculoServiceService {
       /* return this.usuarios = this.usuarios */
         return this.usuarios = this.usuariosCollection.snapshotChanges().pipe(map(actions=>{
           return actions.map(a =>{
-            const data= a.payload.doc.data() as Consultorio;
-            /* data.id = a.payload.doc.id; */
+            const data= a.payload.doc.data() as Turno;
+            data.id = a.payload.doc.id;
             return data;
           })
         }),)
@@ -40,12 +40,12 @@ export class VehiculoServiceService {
       console.log(filtro, campo);
       if(!filtro){filtro = "";}
       //sacado de https://github.com/angular/angularfire/blob/master/docs/firestore/querying-collections.md
-      return  this.usuarios = this.db.collection('Consultorios', ref => ref.where(campo, '==', filtro))
+      return  this.usuarios = this.db.collection('turnos', ref => ref.where(campo, '==', filtro))
       .snapshotChanges().pipe(map(actions=>{
         return actions.map(a =>{
-          const data= a.payload.doc.data() as Consultorio;
-   /*        data.id = a.payload.doc.id;
-          console.log(data.id); */
+          const data= a.payload.doc.data() as Turno;
+           data.id = a.payload.doc.id;
+      /*    console.log(data.id); */
           /* console.log( a.payload.doc.id); */
           return data;
         })
@@ -60,11 +60,11 @@ export class VehiculoServiceService {
     getUsuariosSC(){
       return new Promise((resolve, reject) => {
         resolve(this.usuarios.subscribe(usuario=>
-          {this.listadoDeUsuarios.push(usuario as Consultorio) ;
+          {this.listadoDeUsuarios.push(usuario as Turno) ;
         }))
         , err=> reject(err)})
       }
-  setUser(us :Consultorio){
+  setUser(us :Turno){
         this.user= us;
         console.log(this.user);
       }
@@ -75,7 +75,7 @@ export class VehiculoServiceService {
     getListUsers(){
       return this.listadoDeUsuarios;
     }
-    addUsuario(usuario: Consultorio){
+    addUsuario(usuario: Turno){
         const param = JSON.parse(JSON.stringify(usuario));
         console.log(param);
         this.usuariosCollection.add(param);

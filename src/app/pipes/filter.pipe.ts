@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Consultorio } from '../models/sonrisa';
-import { VehiculoServiceService } from '../services/vehiculo-service.service';
+import { VehiculoServiceService } from '../services/turno-service.service';
 
 @Pipe({
   name: 'filter'

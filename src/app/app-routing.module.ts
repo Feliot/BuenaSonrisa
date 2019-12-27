@@ -8,6 +8,8 @@ import { ErrorComponent } from './pages/error/error.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { AtTurnosComponent } from './pages/at-turnos/at-turnos.component';
+import { ResenasComponent } from './pages/resenas/resenas.component';
 
 
 
@@ -18,6 +20,8 @@ children:[
 ] */},
 {path: 'login', component: LoginComponent},
 {path: 'admin', component: AdminComponent ,canActivate:[ AuthGuard]},
+{path: 'atenderTurnos', component: AtTurnosComponent ,canActivate:[ AuthGuard]},
+{path: 'reseñas', component: ResenasComponent ,canActivate:[ AuthGuard]},
 {path: 'register', component: RegisterComponent},
 {path: 'alta', component: AltaComponent, canActivate:[ AuthGuard]},
 {path: 'grilla', component: GrillaComponent, canActivate:[ AuthGuard]},

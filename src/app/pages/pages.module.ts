@@ -14,9 +14,11 @@ import {  UserServiceService } from '../services/user-service.service';
 /* import { HomeComponent } from './home/home.component'; */
 import { ErrorComponent } from '../pages/error/error.component';
 import { AdminComponent } from './admin/admin.component';
+import { AtTurnosComponent } from './at-turnos/at-turnos.component';
+import { ResenasComponent } from './resenas/resenas.component';
 
 @NgModule({
-  declarations: [ AdminComponent],
+  declarations: [ AdminComponent, AtTurnosComponent, ResenasComponent],
   imports: [
     CommonModule,
     AngularFirestoreModule,

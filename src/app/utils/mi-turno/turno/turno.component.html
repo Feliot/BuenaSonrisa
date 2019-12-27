@@ -1,7 +1,20 @@
-<h2> Solicitar un Turno </h2>
-<div>
-    
-</div>
 
+<mat-card class="example-card">
+    <h2> Solicitar un Turno </h2>
+    <form class="example-form">
+ <!--    <mat-form-field >
+        <input matInput placeholder="Favorite food" [(ngModel)]="hora" name="hora1">
+    </mat-form-field> -->
+
+    <mat-form-field  class="full-width">
+        <mat-select placeholder="especialidad" [(ngModel)]="turno.hora"  name="especialidad">
+                <mat-option [value]="especialidad" *ngFor="let especialidad of especialidades">{{especialidad}}</mat-option>
+        </mat-select>
+    </mat-form-field> 
+<br>
+<button mat-raised-button color="primary" (click)="onSubmitAlta()">
+    <span>Generar turno</span><mat-icon>person</mat-icon></button>
+    </form>
+</mat-card>
   
 

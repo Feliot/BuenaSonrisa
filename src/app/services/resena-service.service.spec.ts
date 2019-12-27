@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CsvServicesService } from './csv-services.service';
+import { ResenaServiceService } from './resena-service.service';
 
-describe('CsvServicesService', () => {
+describe('ResenaServiceService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: CsvServicesService = TestBed.get(CsvServicesService);
+    const service: ResenaServiceService = TestBed.get(ResenaServiceService);
     expect(service).toBeTruthy();
   });
 });
