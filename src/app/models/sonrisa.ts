@@ -39,4 +39,14 @@ export class miReseña implements Reseña {
         public nota?: number, public fecha?:string,public hora?:string , public comentario?:string ){
     }
 }
-
+export interface Encuesta{
+    id?:string;
+    nota_clinica?:number;
+    nota_especialista?:number;
+    comentario?:string; 
+}
+export class miEncuesta implements Encuesta{
+    constructor(public nota_clinica?:number, public nota_especialista?:number,
+         public comentario?:string){
+    }
+}

@@ -2,7 +2,7 @@ import { Component, OnInit, AfterContentInit  } from '@angular/core';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { Usuario, miUsuario, UserCol } from 'src/app/models/usuario';
 import { Consultorio, miConsultorio , Turno, miTurno} from 'src/app/models/sonrisa';
-import { VehiculoServiceService } from 'src/app/services/turno-service.service';
+import { TurnoServiceService } from 'src/app/services/turno-service.service';
 import { UserColServiceService } from 'src/app/services/user-col-service.service';
 /* import * as jsPDF from 'jspdf'; */
 import jsPDF from 'jspdf';
@@ -19,8 +19,8 @@ export class HomeComponent implements AfterContentInit {
   private Listado=[];
   public usuario:UserCol;
   private myturno = new miTurno();
-  constructor( private turnoS:VehiculoServiceService, 
-    private usersS: UserColServiceService,
+  constructor( private usersS:UserColServiceService,
+    private turnoS:TurnoServiceService,
     private miAuth : UserServiceService,
     public dialog: MatDialog) {
     
@@ -29,10 +29,10 @@ export class HomeComponent implements AfterContentInit {
 
   ngAfterContentInit() {
 
-    this.turnoS.GetUsersFiltro(this.miAuth.getUser().email , 'profecional')
+    this.usersS.GetUsersFiltro(this.miAuth.getUser().email , 'profecional')
     .subscribe(r=>{
-      this.turnoS.setUser(r[0]);
-     this.myturno= this.turnoS.getUser();
+      this.usersS.setUser(r[0]);
+     this.myturno= this.turnoS.getTurno();
    /*   this.vechiculoS.GetUsersFiltro(this.myConsultorio.razonsocial, "concesionaria").subscribe(
       listado=> {this.Listado = listado;
       }
@@ -45,8 +45,8 @@ export class HomeComponent implements AfterContentInit {
   
 generarTurno(e) {
   const dialogRef = this.dialog.open(TurnoComponent);
-  dialogRef.afterClosed().subscribe(result => {
-    console.log(`Dialog result: ${result}`);
+  dialogRef.afterClosed().subscribe(data => {
+    console.log(`Dialog result: ${data.fecha}`);
   });
 /*     console.log(this.text_qr); */
 }

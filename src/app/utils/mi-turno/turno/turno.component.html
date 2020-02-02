@@ -7,13 +7,30 @@
     </mat-form-field> -->
 
     <mat-form-field  class="full-width">
-        <mat-select placeholder="especialidad" [(ngModel)]="turno.hora"  name="especialidad">
+        <mat-select placeholder="especialidad" [(ngModel)]="turno.especialidad"  name="especialidad">
                 <mat-option [value]="especialidad" *ngFor="let especialidad of especialidades">{{especialidad}}</mat-option>
         </mat-select>
     </mat-form-field> 
-<br>
-<button mat-raised-button color="primary" (click)="onSubmitAlta()">
-    <span>Generar turno</span><mat-icon>person</mat-icon></button>
+    <p>
+    <mat-form-field>
+      <input matInput [min]="minDate" [matDatepickerFilter]="myFilter" [matDatepicker]="dp3" placeholder="Fecha" [(ngModel)]="turno.fecha" name="fecha" disabled>
+      <mat-datepicker-toggle  matSuffix [for]="dp3" ></mat-datepicker-toggle>
+      <mat-datepicker [dateClass]="dateClass" #dp3 disabled="false"  ></mat-datepicker>
+    </mat-form-field>
+    </p>
+    <mat-form-field  class="full-width">
+        <mat-select placeholder="Horario" [(ngModel)]="turno.hora"  name="hora">
+                <mat-option [value]="horario" *ngFor="let horario of horarios">{{horario}}</mat-option>
+        </mat-select>
+    </mat-form-field> 
+        <br>
+        <button mat-raised-button *ngIf="turno.especialidad; else elseTurno" color="primary" (click)="onSubmitAlta()">
+            <span>Generar turno</span><mat-icon>person</mat-icon>
+        </button>
+        <ng-template #elseTurno>
+            <button mat-raised-button color="Disabled" >
+                <span>Generar turno </span><mat-icon>person</mat-icon></button>
+        </ng-template>
     </form>
 </mat-card>
   

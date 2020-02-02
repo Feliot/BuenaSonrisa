@@ -7,17 +7,17 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class VehiculoServiceService {
-  usuariosCollection : AngularFirestoreCollection<Turno>;
-  usuarios: Observable<Turno[]>;
-  usuarioDoc: AngularFirestoreDocument<Turno>;
-  user: Turno = {};
-  listadoDeUsuarios: Turno[];
+export class TurnoServiceService {
+  turnosCollection : AngularFirestoreCollection<Turno>;
+  turnos: Observable<Turno[]>;
+  turnoDoc: AngularFirestoreDocument<Turno>;
+  turno: Turno = {};
+  listadoDeturnos: Turno[];
   constructor(public db: AngularFirestore) {
-    /* this.usuarios = this.db.collection('usuarios').valueChanges(); */
-    this.usuariosCollection = this.db.collection('turnos');
+    /* this.turnos = this.db.collection('turnos').valueChanges(); */
+    this.turnosCollection = this.db.collection('turnos');
 
-    this.usuarios = this.usuariosCollection.snapshotChanges().pipe(
+    this.turnos = this.turnosCollection.snapshotChanges().pipe(
       map(actions=> actions.map(a =>{
         const data= a.payload.doc.data() as Turno;
         const id = a.payload.doc.id;
@@ -25,10 +25,10 @@ export class VehiculoServiceService {
       })
     ),);
   }
-  GetUsers(){
-    /*   console.log(this.usuarios); */
-      /* return this.usuarios = this.usuarios */
-        return this.usuarios = this.usuariosCollection.snapshotChanges().pipe(map(actions=>{
+  GetTurnos(){
+    /*   console.log(this.turnos); */
+      /* return this.turnos = this.turnos */
+        return this.turnos = this.turnosCollection.snapshotChanges().pipe(map(actions=>{
           return actions.map(a =>{
             const data= a.payload.doc.data() as Turno;
             data.id = a.payload.doc.id;
@@ -36,11 +36,11 @@ export class VehiculoServiceService {
           })
         }),)
     }
-    GetUsersFiltro(  filtro: string,  campo:string){
+    GetTurnosFiltro(  filtro: string,  campo:string){
       console.log(filtro, campo);
       if(!filtro){filtro = "";}
       //sacado de https://github.com/angular/angularfire/blob/master/docs/firestore/querying-collections.md
-      return  this.usuarios = this.db.collection('turnos', ref => ref.where(campo, '==', filtro))
+      return  this.turnos = this.db.collection('turnos', ref => ref.where(campo, '==', filtro))
       .snapshotChanges().pipe(map(actions=>{
         return actions.map(a =>{
           const data= a.payload.doc.data() as Turno;
@@ -51,33 +51,33 @@ export class VehiculoServiceService {
         })
       }),)
       }
-   DevolverUsuarioFiltro(filtro: string,  campo:string){
+   DevolverTurnoFiltro(filtro: string,  campo:string){
         return new Promise((resolve, reject) => {
-      resolve(this.GetUsersFiltro(filtro, campo)), err=> reject(err)})
+      resolve(this.GetTurnosFiltro(filtro, campo)), err=> reject(err)})
       }
 
 
-    getUsuariosSC(){
+    getTurnosSC(){
       return new Promise((resolve, reject) => {
-        resolve(this.usuarios.subscribe(usuario=>
-          {this.listadoDeUsuarios.push(usuario as Turno) ;
+        resolve(this.turnos.subscribe(turno=>
+          {this.listadoDeturnos.push(turno as Turno) ;
         }))
         , err=> reject(err)})
       }
-  setUser(us :Turno){
-        this.user= us;
-        console.log(this.user);
+  setTurno(us :Turno){
+        this.turno= us;
+        console.log(this.turno);
       }
 
-    getUser(){
-        return this.user;
+    getTurno(){
+        return this.turno;
       }  
-    getListUsers(){
-      return this.listadoDeUsuarios;
+    getListTurnos(){
+      return this.listadoDeturnos;
     }
-    addUsuario(usuario: Turno){
-        const param = JSON.parse(JSON.stringify(usuario));
+    addTurno(turno: Turno){
+        const param = JSON.parse(JSON.stringify(turno));
         console.log(param);
-        this.usuariosCollection.add(param);
+        this.turnosCollection.add(param);
     }
 }

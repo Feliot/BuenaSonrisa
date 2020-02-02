@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { UserColServiceService } from 'src/app/services/user-col-service.service';
-import { VehiculoServiceService } from 'src/app/services/turno-service.service';
+import { TurnoServiceService } from 'src/app/services/turno-service.service';
 import { Consultorio, miConsultorio } from 'src/app/models/sonrisa';
 import { miUserCol, UserCol } from 'src/app/models/usuario';
 import jsPDF from 'jspdf';
