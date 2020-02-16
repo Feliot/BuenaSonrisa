@@ -6,11 +6,11 @@
  <table id="miTabla">
 <thead id="titulo"> 
     <tr>
-        <td  *ngFor="let items of arrayUsuario"> {{ items | titlecase }} </td>
+        <td  *ngFor="let items of arrayTurnos"> {{ items | titlecase }} </td>
     </tr>
  </thead> 
  <tbody id="cuerpo">
-    <tr  *ngFor="let item of usuarios | filter:Buscar" app-fila [item]="item" (Cargar)="openDialog($event)">
+    <tr  *ngFor="let item of turnos | filter:Buscar" app-fila [item]="item" (Cargar)="openDialog($event)">
     </tr>
 </tbody>
 
@@ -18,7 +18,7 @@
 </div> <!-- //contenido -->
 <br>
 
-<ngx-qrcode id="qrCodeImagen" [qrc-element-type]="elementType" [qrc-value]="text_qr"></ngx-qrcode>
+<!-- <ngx-qrcode id="qrCodeImagen" [qrc-element-type]="elementType" [qrc-value]="text_qr"></ngx-qrcode> -->
 <div class="example-button-row">
 <button mat-raised-button color="primary" aria-label="PDF" (click)="exportarPDF()">
     <mat-icon>image</mat-icon>

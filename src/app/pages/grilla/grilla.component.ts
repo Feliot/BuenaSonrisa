@@ -18,15 +18,20 @@ export class GrillaComponent implements OnInit {
   public  especialidades= ['odontologo', 'cirujano', '-'];
   public  Listado: miUserCol[];
   public usuario = new miUserCol('');
-  public arrayUsuario;
+  public arrayUsuario= new Array;
   public usuarios;
   private myUserCol = new miUserCol();
   constructor( 
     private usersS: UserColServiceService,
     private miAuth : UserServiceService) { }
-
+/* HACER ENTIDADES HORARIOS e INDISPONIBILIDADES */
   ngOnInit() {
-    this.arrayUsuario = Object.keys(this.usuario);
+/*     this.arrayUsuario = Object.keys(this.usuario);
+    this.arrayUsuario .splice(3, 1 ); */
+
+    this.arrayUsuario.push("Email");
+    this.arrayUsuario.push("foto");
+    this.arrayUsuario.push("Tipo / Especialidad");
     this.arrayUsuario.push("Acciones");
     this.usersS.GetUsers().subscribe(
      listado=> {this.Listado = listado}
@@ -38,6 +43,18 @@ export class GrillaComponent implements OnInit {
   actualizar(a){
 /*     console.log(a); */
     this.usersS.updateUser(a);
+  }
+  cambiar_tipo(us_seleccionado:miUserCol){
+    if(us_seleccionado.tipo != 'especialista'){
+      us_seleccionado.especialidad= '';
+    }
+    console.log(us_seleccionado.tipo);
+  }
+  cambiar_especialidad(us_seleccionado:miUserCol){
+    if(us_seleccionado.tipo != 'profecional'){
+      us_seleccionado.especialidad= '';
+      /* alert('Solo un profecional puede'); */
+    }
   }
   
   public exportarPDF() {

@@ -41,9 +41,12 @@ export class miReseña implements Reseña {
 }
 export interface Encuesta{
     id?:string;
+    usuario?:string;
+    clinica?:string;
+    especialista?:string;
     nota_clinica?:number;
     nota_especialista?:number;
-    comentario?:string; 
+    comentario?:string;
 }
 export class miEncuesta implements Encuesta{
     constructor(public nota_clinica?:number, public nota_especialista?:number,

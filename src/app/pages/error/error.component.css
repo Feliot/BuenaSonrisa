@@ -1,21 +1,21 @@
 .contenedora{
-    background: -webkit-gradient(linear,0% 0%,100% 0%,color-stop(0, rgb(150, 10, 0)),color-stop(50%,rgb(50, 0, 0) ),color-stop(100%,rgb(20, 0, 0)));
-    padding: 0 20px;
+   /*  background: -webkit-gradient(linear,0% 0%,100% 0%,color-stop(0, rgb(150, 10, 0)),color-stop(50%,rgb(50, 0, 0) ),color-stop(100%,rgb(20, 0, 0))); */
+    padding: 0 10px;
     margin: 1px;
-    width: auto;
-    overflow: auto;
-    color: white;
+    min-width: 600px;
+    width: 100%;
+    min-height: 600px;
+    height: 100%;
+    /* overflow: auto; */
+    color: crimson;
     /* border: 1px solid #ccc; */
-    box-shadow: 1px 0px 20px 5px red;
+   /*  box-shadow: 1px 0px 20px 5px red; */
     border-radius: 5px;
-    min-height: 300px;
-    min-width: 300px;
-    width: auto;
 }
 .mat-button{
     box-shadow: 0 0 20px 10px rgb(150, 0, 0);
     margin-bottom: 0px;
-    color : white;
+    color : cornsilk;
     /* padding: 1px; */
     border-radius: 5px;
     margin: 1px auto;

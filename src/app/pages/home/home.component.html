@@ -1,9 +1,10 @@
 
 <mat-card-title>Listado de Turnos</mat-card-title>
 <br>
-<br>
+<p></p>
 <button mat-raised-button color="primary" aria-label="turno" (click)="generarTurno($event)">
+
     <span>Nuevo Turno</span>
 </button>
-<app-form-datos [usuarios]="getUsuarios()"></app-form-datos>
+<app-form-datos [turnos]="getTurnos()"></app-form-datos>
 

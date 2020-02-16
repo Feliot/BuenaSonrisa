@@ -1,10 +1,12 @@
 
 
 <td > {{item.estado}} </td>
-<td > <img src="{{item.foto}}" alt="foto" class="imagen"></td>
-<td > {{item.fecha}} </td>
+<!-- <td > <img src="{{item.foto}}" alt="foto" class="imagen"></td> -->
+<td > {{item.fecha|date:"dd/MM/yyyy"}} </td>
 <td > {{item.hora}} </td>
+<td > {{item.usuario}} </td>
 <td > {{item.profecional}} </td>
+<td > {{item.sala}} </td>
 <td>
     <button mat-stroked-button color="accent" id="{{item.concesionaria}}" (click)="manejadora(item)">
             <mat-icon>update</mat-icon>

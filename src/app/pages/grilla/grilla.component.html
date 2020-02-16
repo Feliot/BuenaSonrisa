@@ -19,18 +19,18 @@
         <td > <img src="{{item.foto}}" alt="foto" class="imagen"></td>
         <td >
         <mat-form-field >
-            <mat-select placeholder="tipo" [(ngModel)]="item.tipo" name="tipo">
+            <mat-select placeholder="tipo" [(ngModel)]="item.tipo" name="tipo" (selectionChange)="cambiar_tipo(item)">
                     <mat-option [value]="tipo" *ngFor="let tipo of tipos">{{tipo}}</mat-option>
             </mat-select>
         </mat-form-field>
+        <br>
+        <mat-form-field *ngIf="item.tipo ==='especialista';">
+            <mat-select placeholder="especialidad" [(ngModel)]="item.especialidad" name="especialidad" (click)="cambiar_especialidad(item)" >
+                    <mat-option [value]="especialidad" *ngFor="let especialidad of especialidades">{{especialidad}}</mat-option>
+            </mat-select>
+        </mat-form-field>
         </td>
-        <td >
-            <mat-form-field >
-                <mat-select placeholder="especialidad" [(ngModel)]="item.especialidad" name="especialidad">
-                        <mat-option [value]="especialidad" *ngFor="let especialidad of especialidades">{{especialidad}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </td>
+      
         <td>
             <button mat-stroked-button color="accent" id="{{item.id}}" (click)="actualizar(item)">
                     <mat-icon>update</mat-icon>

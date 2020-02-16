@@ -1,6 +1,4 @@
 import { Output, ElementRef, ViewChild, AfterContentInit, OnInit} from '@angular/core';
-import{ Usuario, miUsuario } from '../../models/usuario'
-import{ UserCol, miUserCol } from '../../models/usuario'
 import { Component, Input} from '@angular/core';
 /* import * as jsPDF from 'jspdf'; */
 import jsPDF from 'jspdf';
@@ -20,31 +18,36 @@ export class FormDatosComponent implements AfterContentInit {
   public qrCodeImagen="";
 @ViewChild('contenido', {static: false}) contenidoRef: ElementRef;
 public Buscar="";
-  public usuario = new miTurno('','');
-/*   private posisionUid = this.arrayUsuario.indexOf('uid');
-  columnsToDisplay: string[] = this.arrayUsuario.slice(0, this.posisionUid); */
- public arrayUsuario;
+  public turno = new miTurno('','');
+/*   private posisionUid = this.arrayTurnos.indexOf('uid');
+  columnsToDisplay: string[] = this.arrayTurnos.slice(0, this.posisionUid); */
+ public arrayTurnos;
  public  text_qr: string ;
  public elementType: string;
   constructor(public dialog: MatDialog) {
    }
-   @Input() usuarios;
+   @Input() turnos;
 
   ngAfterContentInit(){
     /* this.contenidoRef.nativeElement.focus(); */
- /*    console.log(this.usuarios); */
+ /*    console.log(this.turnos); */
     //Si es un objeto
-/*     Object.keys(this.usuarios); */
-    this.arrayUsuario = Object.keys(this.usuario);
-    this.arrayUsuario.push("Acciones");
+/*     Object.keys(this.turnos); */
+    this.arrayTurnos = Object.keys(this.turno);
+    this.arrayTurnos.push("Acciones");
   }
   openDialog(e) {
-    const dialogRef = this.dialog.open(QrcodeComponent);
+    this.text_qr= e;
+    const dialogRef = this.dialog.open(QrcodeComponent, {
+      width: 'auto',
+      height: 'auto',
+      data:{
+        text_qr: this.text_qr
+      }
+    });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
-
-    this.text_qr= e;
 /*     console.log(this.text_qr); */
   }
 
@@ -70,7 +73,7 @@ public Buscar="";
   /* generate workbook and add the worksheet */
   //Libreria https://github.com/SheetJS/sheetjs
   const wb = XLSX.utils.book_new()
-  const ws = XLSX.utils.json_to_sheet(this.usuarios)
+  const ws = XLSX.utils.json_to_sheet(this.turnos)
   XLSX.utils.book_append_sheet(wb, ws, 'test')
   XLSX.writeFile(wb, 'turnos.csv')
   }

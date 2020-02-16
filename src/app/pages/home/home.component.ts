@@ -16,7 +16,7 @@ import { TurnoComponent } from 'src/app/utils/mi-turno/turno/turno.component';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements AfterContentInit {
-  private Listado=[];
+  private Listado: miTurno[];
   public usuario:UserCol;
   private myturno = new miTurno();
   constructor( private usersS:UserColServiceService,
@@ -28,31 +28,39 @@ export class HomeComponent implements AfterContentInit {
    }
 
   ngAfterContentInit() {
-
-    this.usersS.GetUsersFiltro(this.miAuth.getUser().email , 'profecional')
+    this.usersS.GetUsersFiltro(this.miAuth.getUser().email, 'email' )
     .subscribe(r=>{
+      console.log(r[0].tipo);
       this.usersS.setUser(r[0]);
-     this.myturno= this.turnoS.getTurno();
+      if(r[0].tipo === 'administrador'){
+        this.turnoS.GetTurnos().subscribe(
+          listado=> {this.Listado = listado
+            console.log(listado);})
+      }
+      else{
+        this.turnoS.GetTurnosFiltro(this.miAuth.getUser().email,'profecional').subscribe(
+          listado=> {this.Listado = listado
+          console.log(listado);})
+      }
+ 
    /*   this.vechiculoS.GetUsersFiltro(this.myConsultorio.razonsocial, "concesionaria").subscribe(
       listado=> {this.Listado = listado;
       }
     ) */
     })
-
-
 }
 
   
 generarTurno(e) {
   const dialogRef = this.dialog.open(TurnoComponent);
   dialogRef.afterClosed().subscribe(data => {
-    console.log(`Dialog result: ${data.fecha}`);
+    data != undefined ? this.turnoS.addTurno(data):console.log(`Dialog result: ${data.fecha}`);
   });
 /*     console.log(this.text_qr); */
 }
 
- 
-getUsuarios(){
+getTurnos(){
 return this.Listado as Turno[];
 }
+
 }

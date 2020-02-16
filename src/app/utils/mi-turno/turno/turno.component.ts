@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, AfterContentInit, ViewChild, Inject, ɵConsole } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { miTurno } from 'src/app/models/sonrisa';
+import { UserColServiceService } from 'src/app/services/user-col-service.service';
 
 
 @Component({
@@ -19,12 +20,18 @@ export class TurnoComponent implements AfterContentInit {
 
  public turno = new miTurno("","","");
 public hora:string ="";
-  constructor( public dialogRef: MatDialogRef<TurnoComponent>, 
+  constructor( public dialogRef: MatDialogRef<TurnoComponent>, public uss: UserColServiceService,
     @Inject(MAT_DIALOG_DATA) public data: string) { }
     dateClass = (d: Date) => {
       const date = d.getDate();
       // Highlight the 1st and 20th day of each month.
-      return (date === 15 || date === 17) ? 'example-custom-date-class' : undefined;
+       var dev = undefined ;
+       if(date === 1 || date === 20){
+        dev= 'example-custom-date-class' }
+         else{
+        dev=  undefined;
+         } 
+         return dev
     }
     minDate = new Date();
     myFilter = (d: Date): boolean => {
@@ -36,6 +43,7 @@ public hora:string ="";
   
   }
   onSubmitAlta(){
+    this.turno.usuario= this.uss.getUser().email;
     this.dialogRef.close(this.turno);
   }
 }

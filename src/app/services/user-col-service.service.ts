@@ -37,7 +37,7 @@ export class UserColServiceService {
           })
         }),)
     }
-    GetUsersFiltro(  filtro: string,  campo:string){
+      GetUsersFiltro(  filtro: string,  campo:string){
    /*    console.log(filtro, campo); */
       //sacado de https://github.com/angular/angularfire/blob/master/docs/firestore/querying-collections.md
       return  this.usuarios = this.db.collection('UserCols', ref => ref.where(campo, '==', filtro))

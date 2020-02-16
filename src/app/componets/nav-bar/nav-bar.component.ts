@@ -11,6 +11,7 @@ import { UserColServiceService } from 'src/app/services/user-col-service.service
 })
 export class NavBarComponent implements OnInit {
   token;
+  public audio = new Audio('assets/Waves.mp3');
   public myUsuario : Usuario;
   public myUserCol: UserCol;
   public isAdmin : boolean;
@@ -24,6 +25,7 @@ export class NavBarComponent implements OnInit {
     }
   }
   ngOnInit(){
+    this.audio.volume = 0.2;
     this.miAuth.getAuth()
     .subscribe(user =>{
       if(user){
@@ -81,5 +83,20 @@ export class NavBarComponent implements OnInit {
     this.isLogin= false;
     this.myUsuario = null;
   }
-
+  reproducir() {
+    if(this.audio.paused){
+   this.audio.play();
+    }else{
+      this.audio.pause();
+    }
+  
+  }
+  subirvol(){
+    this.audio.volume<=0.9?this.audio.volume= this.audio.volume + 0.1:this.audio.volume = 1
+     /*  console.log(this.audio.volume) */
+  }
+  bajarvol(){
+    this.audio.volume>0.2?this.audio.volume= this.audio.volume - 0.1:this.audio.volume = 0.1
+   /*  console.log(this.audio.volume) */
+  }
 }
