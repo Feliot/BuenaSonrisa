@@ -1,13 +1,20 @@
 <h2>Atender turno</h2>
-
+<br>
 <form class="example-form">
-  
-    <mat-form-field class="example-full-width">
+    <mat-form-field>
+        <mat-select placeholder="estado" [(ngModel)]="turno.estado" name="estado" ><!--  (click)="cambiar_estado(item)" -->
+                <mat-option [value]="estado" *ngFor="let estado of estados">{{estado}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" id="resena" *ngIf="turno.estado ==='atendido';">
       <mat-label>Reseña:</mat-label>
-      <textarea matInput placeholder="Un pequeña reseña..."></textarea>
+      <textarea matInput placeholder="Un pequeña reseña..." [(ngModel)]="turno.resena" name="resena" ></textarea>
     </mat-form-field>
 <br>
+<br>
     <button mat-raised-button color="primary" (click)="cerrar()">
-        <span>Atender</span><mat-icon>exit</mat-icon>
+        <mat-icon>donee</mat-icon><span> Atender</span>
     </button>
+
   </form>

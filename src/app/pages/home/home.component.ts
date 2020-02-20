@@ -33,20 +33,20 @@ export class HomeComponent implements AfterContentInit {
      /*  console.log(r[0].tipo); */
       this.usersS.setUser(r[0]);
       
-      if(r[0].tipo === 'administrador'){
+      if(r[0].tipo === 'administrador' || r[0].tipo === 'recepcionista' ){
         this.turnoS.GetTurnos().subscribe(
           listado=> {this.Listado = listado;
             this.usuario= r[0];
             /* console.log(listado) */;})
       }
       else if(r[0].tipo === 'especialista'){
-        this.turnoS.GetTurnosFiltro(this.miAuth.getUser().email,'especialista').subscribe(
+        this.turnoS.GetTurnosFiltro(this.miAuth.getUser().email,'profecional').subscribe(
           listado=> {this.Listado = listado;
             this.usuario= r[0];
           /* console.log(listado) */;})
       }
       else{
-        this.turnoS.GetTurnosFiltro(this.miAuth.getUser().email,'usuario').subscribe(
+        this.turnoS.GetTurnosDobleFiltro(this.miAuth.getUser().email,'usuario','pendiente','estado').subscribe(
           listado=> {this.Listado = listado;
             this.usuario= r[0];
           /* console.log(listado) */;})

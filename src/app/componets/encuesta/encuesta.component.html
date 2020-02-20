@@ -1,1 +1,27 @@
-<p>encuesta works!</p>
+<h2>Encuesta</h2>
+<br>
+<form class="example-form">
+  <!--  (click)="cambiar_estado(item)" -->
+    <mat-form-field>
+    <mat-select placeholder="nota clínica" [(ngModel)]="encuesta.nota_clinica" name="notac" >
+                <mat-option [value]="nota" *ngFor="let nota of notas">{{nota}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+<mat-form-field>
+    <mat-select placeholder="nota especialista" [(ngModel)]="encuesta.nota_especialista" name="notae" >
+      <mat-option [value]="nota1" *ngFor="let nota1 of notas">{{nota1}}</mat-option>
+    </mat-select>
+    </mat-form-field>
+<br>  
+
+    <mat-form-field class="example-full-width" id="experiencia">
+      <mat-label>Experiencia:</mat-label>
+      <textarea matInput maxlength="60" placeholder="Mi experiencia ..." [(ngModel)]="encuesta.comentario" name="experiencia"  ></textarea>
+    </mat-form-field>
+<br>
+<br>
+    <button mat-raised-button color="primary" (click)="cerrar()">
+        <mat-icon>donee</mat-icon><span> Atender</span>
+    </button>
+
+  </form>

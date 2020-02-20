@@ -42,8 +42,8 @@ encuestaColletion : AngularFirestoreCollection<Encuesta>;
       .snapshotChanges().pipe(map(actions=>{
         return actions.map(a =>{
           const data= a.payload.doc.data() as Encuesta;
-   /*        data.id = a.payload.doc.id;
-          console.log(data.id); */
+          data.id = a.payload.doc.id;
+         /* console.log(data.id); */
 /*           console.log( a.payload.doc.id); */
           return data;
         })

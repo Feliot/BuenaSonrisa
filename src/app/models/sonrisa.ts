@@ -18,6 +18,7 @@ export interface Turno{
     profecional?:string;
     especialidad?: String;
     sala?:string;
+    encuestado?:string;
 }
 export class miTurno implements Turno {
     constructor( public estado?: string, public fecha?:string,

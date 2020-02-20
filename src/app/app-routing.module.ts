@@ -10,7 +10,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { AtTurnosComponent } from './pages/at-turnos/at-turnos.component';
 import { ResenasComponent } from './pages/resenas/resenas.component';
-
+import { MaterialModule } from './material';
 
 
 const routes: Routes = [ {path: 'home', component: HomeComponent,

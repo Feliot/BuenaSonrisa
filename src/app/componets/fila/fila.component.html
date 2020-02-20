@@ -17,7 +17,7 @@
             <mat-icon>graphic_eq</mat-icon>
             <span>QR</span>
         </button>
-        <button mat-flat-button color="primary" id="resena{{item.id}}"  (click)="resena(item)">
+        <button mat-flat-button color="primary" id="resena{{item.id}}"  (click)="resena(item)" *ngIf="tipo==='especialista' || tipo==='recepcionista'">
             <mat-icon>comment</mat-icon>
             <span></span>
             <span> Atender</span>

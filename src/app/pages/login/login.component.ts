@@ -52,7 +52,7 @@ cargarCliente(){
   this.password= '123456';
 }
 cargarRecepcionista(){
-  this.email= 'recepcionista@recepcionista.com';
+  this.email= 'sec@gmail.com';
   this.password= '123456';
 }
 cargarEspecialista(){

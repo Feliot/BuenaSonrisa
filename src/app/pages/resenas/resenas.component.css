@@ -1,4 +1,6 @@
-
+#reseña{
+    min-width: 180px;
+}
 td{
     /*  background: whitesmoke; */
      border-bottom: 1px solid silver;
@@ -55,7 +57,7 @@ td{
  
  
  th, td {
-     width: 25%;
+
      text-align: left;
      padding: 10px;
   }

@@ -11,7 +11,7 @@
     </tr>
  </thead> 
  <tbody id="cuerpo">
-    <tr  *ngFor="let item of turnos | filter:Buscar" app-fila [item]="item" 
+    <tr  *ngFor="let item of turnos | filter:Buscar" app-fila [item]="item" [tipo]="tipo_de_usuario"
     (Cargar)="openDialog($event)"  (Eliminar)="eliminar($event)" (Resena)="hacerResena($event)">
     </tr>
 </tbody>

@@ -59,7 +59,9 @@ public Buscar="";
   }
   hacerResena(e){
     /* cerrar un turno y hacer su Reseña */
-    const dialogRef = this.dialog.open(ResenaComponent);
+    const dialogRef = this.dialog.open(ResenaComponent,{data:{
+      turno: e
+    }} );
     dialogRef.afterClosed().subscribe(data => {
       data != undefined ? this.turnoS.updateTurno(data):console.log(`Reseña revocada`);
     });

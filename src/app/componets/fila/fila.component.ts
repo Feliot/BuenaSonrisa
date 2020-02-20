@@ -8,6 +8,7 @@ import { Component, OnInit, Input, AfterContentInit ,Output ,EventEmitter} from 
 })
 export class FilaComponent implements OnInit {
   @Input() item;
+  @Input() tipo;
   @Output() Cargar = new EventEmitter();
   @Output() Eliminar = new EventEmitter();
   @Output() Resena = new EventEmitter();

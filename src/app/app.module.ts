@@ -45,7 +45,7 @@ import { AcercaDeComponent } from './componets/acerca-de/acerca-de.component';
      UtilmoduleModule,
      NgxQRCodeModule
   ],
-  entryComponents:[AcercaDeComponent,ResenaComponent],
+  entryComponents:[AcercaDeComponent,ResenaComponent,EncuestaComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

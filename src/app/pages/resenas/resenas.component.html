@@ -1,23 +1,34 @@
 
 <!-- <mat-card-title> RESEÑAS</mat-card-title> -->
-
-<div #contenido>  
+<h2>Reseñas</h2>
+<div #contenido>
   
 
     <table id="miTabla">
    <thead id="titulo"> 
        <tr>
-           <td  *ngFor="let items of arrayUsuario"> {{ items | titlecase }} </td>
+           <td  *ngFor="let items of titulos"> {{ items | titlecase }} </td>
        </tr>
     </thead> 
     <tbody id="cuerpo">
        <tr  *ngFor="let item of Listado">
-        <td > {{item.profecional}} </td>
-        <td > <img src="{{item.foto}}" alt="foto" class="imagen"></td>
-        <td > {{item.nota | number}} </td>
-        <td > {{item.fecha }} </td>
-        <td > {{item.hora }} </td>
-        <td > {{item.comentario}} </td>
+        <td > {{item.fecha | date:"dd/MM/yyyy"}} </td>
+       <!--  <td > <img src="{{item.foto}}" alt="foto" class="imagen"></td> -->
+        <td > {{item.hora}} </td>
+        <td > {{item.profecional }} </td>
+        <td > {{item.especialidad }} </td>
+        <td > {{item.usuario}} </td>
+        <td id="reseña"> {{item.resena}} </td>
+        <td><button mat-flat-button color="primary" id="encuesta{{item.id}}"  (click)="encuesta(item)" *ngIf="usuario.tipo==='cliente' && !item.encuestado;else encuestado">
+            <mat-icon>comment</mat-icon>
+            <span></span>
+            <span> Encuesta</span>
+        </button>
+        <ng-template #encuestado> 
+            Ya Encuestado!
+        </ng-template>
+    </td>
+        
     </tr>
    </tbody>
    
@@ -25,7 +36,8 @@
    </div> <!-- //contenido -->
    <br>
    
-<!--    <div class="example-button-row">
+ 
+   <div class="example-button-row">
    <button mat-raised-button color="primary" aria-label="PDF" (click)="exportarPDF()">
        <mat-icon>image</mat-icon>
        <span>Esportar a PDF</span>
@@ -34,4 +46,4 @@
        <mat-icon>archive</mat-icon>
        <span>Esportar a CSV</span>
    </button>
-   </div> -->
+   </div>

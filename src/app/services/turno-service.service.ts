@@ -47,11 +47,28 @@ export class TurnoServiceService {
           const data= a.payload.doc.data() as Turno;
            data.id = a.payload.doc.id;
        /*   console.log(data.id); */
-          console.log( a.payload.doc.id);
+         /*  console.log( a.payload.doc.id); */
           return { ...data};
         })
       }),)
       }
+      GetTurnosDobleFiltro( filtro: string,  campo:string ,filtro2: string,  campo2:string){
+        /* console.log(filtro, campo); */
+        if(!filtro){filtro = "";}
+        //sacado de https://github.com/angular/angularfire/blob/master/docs/firestore/querying-collections.md
+        return  this.turnos = this.db.collection('turnos', ref => ref.where(campo, '==', filtro).where(campo2, '==', filtro2))
+        .snapshotChanges().pipe(map(actions=>{
+          return actions.map(a =>{
+            const data= a.payload.doc.data() as Turno;
+             data.id = a.payload.doc.id;
+         /*   console.log(data.id); */
+         /*    console.log( a.payload.doc.id); */
+            return { ...data};
+          })
+        }),)
+        }
+
+
    DevolverTurnoFiltro(filtro: string,  campo:string){
         return new Promise((resolve, reject) => {
       resolve(this.GetTurnosFiltro(filtro, campo)), err=> reject(err)})
