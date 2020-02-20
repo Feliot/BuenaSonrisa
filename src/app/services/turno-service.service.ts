@@ -20,7 +20,7 @@ export class TurnoServiceService {
     this.turnos = this.turnosCollection.snapshotChanges().pipe(
       map(actions=> actions.map(a =>{
         const data= a.payload.doc.data() as Turno;
-        const id = a.payload.doc.id;
+         data.id = a.payload.doc.id;
         return { ...data};
       })
     ),);
@@ -32,22 +32,23 @@ export class TurnoServiceService {
           return actions.map(a =>{
             const data= a.payload.doc.data() as Turno;
             data.id = a.payload.doc.id;
-            return data;
+            /* console.log( a.payload.doc.id); */
+            return  { ...data};
           })
         }),)
     }
     GetTurnosFiltro(  filtro: string,  campo:string){
-      console.log(filtro, campo);
+      /* console.log(filtro, campo); */
       if(!filtro){filtro = "";}
       //sacado de https://github.com/angular/angularfire/blob/master/docs/firestore/querying-collections.md
       return  this.turnos = this.db.collection('turnos', ref => ref.where(campo, '==', filtro))
       .snapshotChanges().pipe(map(actions=>{
         return actions.map(a =>{
           const data= a.payload.doc.data() as Turno;
-           /* data.id = a.payload.doc.id; */
+           data.id = a.payload.doc.id;
        /*   console.log(data.id); */
-          /* console.log( a.payload.doc.id); */
-          return data;
+          console.log( a.payload.doc.id);
+          return { ...data};
         })
       }),)
       }
@@ -79,5 +80,24 @@ export class TurnoServiceService {
         const param = JSON.parse(JSON.stringify(turno));
         console.log(param);
         this.turnosCollection.add(param);
+    }
+    deleteTurno(turno: Turno){
+     /*  console.log(turno); */
+      if (confirm("¿Realmente desea eliminar el Turno?")){
+      this.turnoDoc= this.db.doc(`turnos/${turno.id}`);
+      /* console.log(turno.id); */
+      this.turnoDoc.delete();
+      }
+    }
+    deleteTurnoxId(id: String){
+      if (confirm("¿Realmente desea eliminar el Turno?")){
+      this.turnoDoc= this.db.doc(`turnos/${id}`);
+      /* console.log(this.turnoDoc); */
+      this.turnoDoc.delete();
+      }
+    }
+    updateTurno(turno:Turno){
+        this.turnoDoc= this.db.doc(`turnos/${turno.id}`);
+        this.turnoDoc.update(turno);
     }
 }

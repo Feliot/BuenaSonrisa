@@ -44,8 +44,8 @@ export class UserColServiceService {
       .snapshotChanges().pipe(map(actions=>{
         return actions.map(a =>{
           const data= a.payload.doc.data() as UserCol;
-   /*        data.id = a.payload.doc.id;
-          console.log(data.id); */
+          data.id = a.payload.doc.id;
+          /* console.log(data.id, filtro, campo); */
 /*           console.log( a.payload.doc.id); */
           return data;
         })

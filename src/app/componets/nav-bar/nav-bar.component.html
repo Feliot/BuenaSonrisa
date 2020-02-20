@@ -4,10 +4,12 @@
       <span></span><mat-icon>blur_on</mat-icon> 
       <span class="titulo"> &nbsp;Buena sonrisa&nbsp; </span>  
       <mat-icon>blur_on</mat-icon>
-      <button mat-icon-button aria-label="reproducir" id="icono" (click)="reproducir();">
+      <button mat-button aria-label="reproducir" id="icono" (click)="reproducir();">
         <mat-icon *ngIf="audio.paused">music_note</mat-icon>
         <mat-icon *ngIf="!audio.paused">music_off</mat-icon>
-        <span id="volumen" > {{ audio.volume*10 | number  }} vol</span>
+        <span id="volumen" *ngIf="audio.volume<1 && audio.volume>0.1"> {{ audio.volume*10 | number  }} vol</span>
+        <span id="volmax" *ngIf="audio.volume>=1"> MAX </span>
+        <span id="volmin" *ngIf="audio.volume<=0.1"> min </span>
       </button>
       <span class="espacio">  </span>
        <button mat-icon-button aria-label="subir" id="icono" (click)="subirvol();"> 
@@ -32,6 +34,10 @@
         <mat-menu #menu="matMenu">
           <button mat-menu-item [routerLink]="['home']" style="color:blue" *ngIf="isLogin" id="NombreMenu">
               <span>    Usuario: {{ myUserCol.tipo | titlecase }}</span>
+          </button>
+          <button mat-menu-item  (click)="abrirAcercaDe()">
+            <mat-icon>info</mat-icon>
+            <span>Acerca de</span>
           </button>
           <button mat-menu-item [routerLink]="['home']" *ngIf="isLogin">
             <mat-icon>home</mat-icon>

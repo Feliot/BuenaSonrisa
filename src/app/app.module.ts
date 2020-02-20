@@ -15,6 +15,10 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { AngularFireModule } from '@angular/fire';
 import { ImagenPipePipe } from './pipes/imagen-pipe.pipe';
+import { ResenaComponent } from './componets/resena/resena.component';
+import { EncuestaComponent } from './componets/encuesta/encuesta.component';
+import { AcercaDeComponent } from './componets/acerca-de/acerca-de.component';
+
 
 
 @NgModule({
@@ -25,7 +29,10 @@ import { ImagenPipePipe } from './pipes/imagen-pipe.pipe';
     FormDatosComponent,
     FilaComponent,
     FilterPipe,
-    ImagenPipePipe
+    ImagenPipePipe,
+    ResenaComponent,
+    EncuestaComponent,
+    AcercaDeComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +45,7 @@ import { ImagenPipePipe } from './pipes/imagen-pipe.pipe';
      UtilmoduleModule,
      NgxQRCodeModule
   ],
+  entryComponents:[AcercaDeComponent,ResenaComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

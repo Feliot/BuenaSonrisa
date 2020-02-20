@@ -36,11 +36,10 @@ export class AuthGuard implements CanActivate {
             .subscribe(r=>
              this.usersS.setUser(r[0]) 
             ) */
-          
           )
            .catch(err => {console.log(err)
               this.router.navigate(['/login']);
-            })
+            }).then()
         }
       })
       );

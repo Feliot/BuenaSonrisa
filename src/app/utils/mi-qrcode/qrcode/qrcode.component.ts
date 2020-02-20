@@ -9,7 +9,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 })
 
 export class QrcodeComponent implements AfterContentInit {
- private text_qr; 
+ public text_qr; 
   elementType ='img';
  /*  @Input() elementType; */
 

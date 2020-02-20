@@ -6,7 +6,9 @@ import 'jspdf-autotable';
 import * as XLSX from 'xlsx';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { QrcodeComponent } from 'src/app/utils/mi-qrcode/qrcode/qrcode.component';
-import { miTurno } from 'src/app/models/sonrisa';
+import { miTurno, Turno } from 'src/app/models/sonrisa';
+import { TurnoServiceService } from 'src/app/services/turno-service.service';
+import {ResenaComponent} from 'src/app/componets/resena/resena.component'
 
 @Component({
   selector: 'app-form-datos',
@@ -24,13 +26,13 @@ public Buscar="";
  public arrayTurnos;
  public  text_qr: string ;
  public elementType: string;
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private turnoS:TurnoServiceService) {
    }
    @Input() turnos;
-
+   @Input() tipo_de_usuario;
   ngAfterContentInit(){
     /* this.contenidoRef.nativeElement.focus(); */
- /*    console.log(this.turnos); */
+  /*    console.log(this.tipo_de_usuario ); */
     //Si es un objeto
 /*     Object.keys(this.turnos); */
     this.arrayTurnos = Object.keys(this.turno);
@@ -46,9 +48,22 @@ public Buscar="";
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      console.log('Código QR leido');
+
     });
 /*     console.log(this.text_qr); */
+  }
+  eliminar(e){
+   /*  console.log(e); */
+      this.turnoS.deleteTurno(e);
+  }
+  hacerResena(e){
+    /* cerrar un turno y hacer su Reseña */
+    const dialogRef = this.dialog.open(ResenaComponent);
+    dialogRef.afterClosed().subscribe(data => {
+      data != undefined ? this.turnoS.updateTurno(data):console.log(`Reseña revocada`);
+    });
+  /*    console.log(`Dialog result: ${data}`); console.log(this.text_qr); */
   }
 
    // exportarPDF

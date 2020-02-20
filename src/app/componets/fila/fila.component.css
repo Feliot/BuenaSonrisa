@@ -1,9 +1,16 @@
 td{
     background: whitesmoke;
-    
+    width: auto;
     border-bottom: 1px solid silver;
 }   
+.linea, .example-button-row
+{
+    display: inline-block;
+}
 .imagen{
     width: 100px;
     height: 100px;
+}
+.espacio{
+min-width: 120px;
 }

@@ -16,12 +16,13 @@ export interface Turno{
     hora?:string;
     usuario?:string;
     profecional?:string;
+    especialidad?: String;
     sala?:string;
 }
 export class miTurno implements Turno {
-    constructor(public estado?: string, public fecha?:string,
+    constructor( public estado?: string, public fecha?:string,
         public hora?: string, public usuario?: string,
-        public profecional?:string,
+        public profecional?:string,public especialidad?: String,
         public sala?:string){
     }
 }
@@ -39,12 +40,27 @@ export class miReseña implements Reseña {
         public nota?: number, public fecha?:string,public hora?:string , public comentario?:string ){
     }
 }
+export class variables_publicas{
+    public especialidades= ['cirugia',
+    'endodoncia',
+    'estomatologia',
+    'gral y protesis',
+    'odontologia',
+    'odontopeditria',
+    'ortopedia y ortodoncia',
+    'periodoncia',
+    'protesis completas',
+    'radiologia'];
+    public horariosH = ['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00']
+    public horariosNH = ['08:00','09:00','10:00','11:00','12:00','13:00','14:00']
+}  
+
 export interface Encuesta{
     id?:string;
     usuario?:string;
     clinica?:string;
-    especialista?:string;
     nota_clinica?:number;
+    especialista?:string;
     nota_especialista?:number;
     comentario?:string;
 }

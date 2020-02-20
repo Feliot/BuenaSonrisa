@@ -2,3 +2,15 @@
   background: orange;
   border-radius: 100%;
 }
+#espacio{
+  width: 10px;
+
+  margin: 10px;
+}
+.lista{
+  list-style: none;
+}
+.example-card{
+  align-items: center;
+  text-align: center;
+}

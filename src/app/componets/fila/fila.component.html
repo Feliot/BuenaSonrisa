@@ -6,10 +6,22 @@
 <td > {{item.hora}} </td>
 <td > {{item.usuario}} </td>
 <td > {{item.profecional}} </td>
+<td > {{item.especialidad}} </td>
 <td > {{item.sala}} </td>
-<td>
-    <button mat-stroked-button color="accent" id="{{item.concesionaria}}" (click)="manejadora(item)">
-            <mat-icon>update</mat-icon>
+<td class="espacio"> 
+   <form>
+        <button mat-mini-fab color="warn" id="eliminar{{item.id}}"  (click)="elim(item)">
+            <mat-icon>delete</mat-icon>
+    </button>
+        <button mat-flat-button color="accent" id="qr{{item.id}}"  (click)="manejadora(item)">
+            <mat-icon>graphic_eq</mat-icon>
             <span>QR</span>
         </button>
-    </td>
+        <button mat-flat-button color="primary" id="resena{{item.id}}"  (click)="resena(item)">
+            <mat-icon>comment</mat-icon>
+            <span></span>
+            <span> Atender</span>
+        </button>
+    </form>
+ 
+</td>

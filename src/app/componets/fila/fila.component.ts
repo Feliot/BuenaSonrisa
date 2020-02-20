@@ -9,7 +9,8 @@ import { Component, OnInit, Input, AfterContentInit ,Output ,EventEmitter} from 
 export class FilaComponent implements OnInit {
   @Input() item;
   @Output() Cargar = new EventEmitter();
-  
+  @Output() Eliminar = new EventEmitter();
+  @Output() Resena = new EventEmitter();
 
 
   manejadora(a) {
@@ -19,6 +20,14 @@ export class FilaComponent implements OnInit {
     this.Cargar.emit(aa);
     }
 
+    elim(a) {
+   /*    let aa = JSON.stringify(a); */
+     /*  console.log(aa); */
+      this.Eliminar.emit(a);
+      }
+  resena(a){
+    this.Resena.emit(a);
+  }
   constructor() { }
 
   ngOnInit() {

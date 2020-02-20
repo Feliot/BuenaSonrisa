@@ -1,7 +1,8 @@
 <div #contenido>  
 
- <mat-form-field>
-        <input matInput placeholder="Buscar por especialidad"  [(ngModel)]="Buscar" required name="Buscar" >
+ <mat-form-field *ngIf="!(tipo_de_usuario==='especialista')">
+        <input matInput placeholder="Buscar por especialidad"  [(ngModel)]="Buscar" 
+        required name="Buscar">
     </mat-form-field>
  <table id="miTabla">
 <thead id="titulo"> 
@@ -10,7 +11,8 @@
     </tr>
  </thead> 
  <tbody id="cuerpo">
-    <tr  *ngFor="let item of turnos | filter:Buscar" app-fila [item]="item" (Cargar)="openDialog($event)">
+    <tr  *ngFor="let item of turnos | filter:Buscar" app-fila [item]="item" 
+    (Cargar)="openDialog($event)"  (Eliminar)="eliminar($event)" (Resena)="hacerResena($event)">
     </tr>
 </tbody>
 

@@ -1,10 +1,11 @@
 
 <mat-card-title>Listado de Turnos</mat-card-title>
 <br>
-<p></p>
-<button mat-raised-button color="primary" aria-label="turno" (click)="generarTurno($event)">
-
-    <span>Nuevo Turno</span>
+<br>
+<button mat-raised-button color="primary" aria-label="turno" (click)="generarTurno($event)" *ngIf="!(usuario.tipo==='especialista')">
+    <mat-icon>add</mat-icon>
+    <span> </span>
+    <span>  Nuevo Turno </span>
 </button>
-<app-form-datos [turnos]="getTurnos()"></app-form-datos>
+<app-form-datos [turnos]="getTurnos()" [tipo_de_usuario]="usuario.tipo"></app-form-datos>
 

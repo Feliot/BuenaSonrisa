@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { UserColServiceService } from 'src/app/services/user-col-service.service';
 import { TurnoServiceService } from 'src/app/services/turno-service.service';
-import { Consultorio, miConsultorio } from 'src/app/models/sonrisa';
+import { Consultorio, miConsultorio, variables_publicas } from 'src/app/models/sonrisa';
 import { miUserCol, UserCol } from 'src/app/models/usuario';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
@@ -15,7 +15,7 @@ import * as XLSX from 'xlsx';
 })
 export class GrillaComponent implements OnInit {
   public  tipos= ['administrador', 'cliente', 'especialista', 'recepcionista'];
-  public  especialidades= ['odontologo', 'cirujano', '-'];
+  public  especialidades= new variables_publicas().especialidades;
   public  Listado: miUserCol[];
   public usuario = new miUserCol('');
   public arrayUsuario= new Array;

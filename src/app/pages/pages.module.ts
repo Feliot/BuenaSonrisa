@@ -26,7 +26,7 @@ import { ResenasComponent } from './resenas/resenas.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFireStorageModule,
-  ],
+  ], 
   providers: [UserServiceService]
 })
 export class PagesModule { }

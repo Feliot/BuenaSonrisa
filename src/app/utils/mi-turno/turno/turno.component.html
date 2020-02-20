@@ -2,30 +2,49 @@
 <mat-card class="example-card">
     <h2> Solicitar un Turno </h2>
     <form class="example-form">
- <!--    <mat-form-field >
-        <input matInput placeholder="Favorite food" [(ngModel)]="hora" name="hora1">
-    </mat-form-field> -->
-
     <mat-form-field  class="full-width">
-        <mat-select placeholder="especialidad" [(ngModel)]="turno.especialidad"  name="especialidad">
+        <mat-select placeholder="especialidad" [(ngModel)]="turno.especialidad"  name="especialidad" (selectionChange)="selectE()">
                 <mat-option [value]="especialidad" *ngFor="let especialidad of especialidades">{{especialidad}}</mat-option>
         </mat-select>
     </mat-form-field> 
-    <p>
-    <mat-form-field>
-      <input matInput [min]="minDate" [matDatepickerFilter]="myFilter" [matDatepicker]="dp3" placeholder="Fecha" [(ngModel)]="turno.fecha" name="fecha" >
-      <mat-datepicker-toggle  matSuffix [for]="dp3" ></mat-datepicker-toggle>
-      <mat-datepicker [dateClass]="dateClass" #dp3 disabled="false"  ></mat-datepicker>
-    </mat-form-field>
+    <span id="espacio"> </span>
+<!--         <span placeholder="sala">sala: {{especialidades.indexOf(turno.especialidad)+1}}</span> -->
+        <mat-form-field class="example-full-width">
+            <mat-label>Sala</mat-label>
+            <input matInput disabled  placeholder="Sala" [(ngModel)]="turno.sala"  name="sala" [value]="especialidades.indexOf(turno.especialidad)+1">
+        </mat-form-field>
+  <!--   <p> -->
+      <br>
+      <mat-form-field  class="full-width" *ngIf="(turno.especialidad && ($profecionales| async)?.length >=0)" >
+        <mat-select placeholder="profecional" [(ngModel)]="turno.profecional"  name="profecional"  matNativeControl required>
+                <mat-option [value]="profecional.email" *ngFor="let profecional of $profecionales | async">{{profecional.email}}</mat-option>
+        </mat-select>
+        <div *ngIf="(($profecionales| async)?.length <1) && turno.especialidad">Sin resultados
+        </div>
+    </mat-form-field> 
+ 
 
-    </p>
+<!-- 
+    <ng-template #sinp>
+        <mat-form-field class="example-full-width">
+            <mat-label>Profecional</mat-label>
+            <input matInput disabled value="Sin resultados">
+          </mat-form-field>
+    </ng-template> -->
+    <br>
+    <mat-form-field>
+      <input matInput [min]="minDate" [matDatepickerFilter]="myFilter" [matDatepicker]="dp3" placeholder="Fecha" [(ngModel)]="turno.fecha" name="fecha" (dateChange)="seleccionDia($event)">
+      <mat-datepicker-toggle  matSuffix [for]="dp3"></mat-datepicker-toggle>
+      <mat-datepicker [dateClass]="dateClass" #dp3 disabled="false" ></mat-datepicker>
+    </mat-form-field>
+<!--     </p> -->
     <mat-form-field  class="full-width">
         <mat-select placeholder="Horario" [(ngModel)]="turno.hora"  name="hora">
                 <mat-option [value]="horario" *ngFor="let horario of horarios">{{horario}}</mat-option>
         </mat-select>
     </mat-form-field> 
         <br>
-        <button mat-raised-button *ngIf="turno.especialidad; else elseTurno" color="primary" (click)="onSubmitAlta()">
+        <button mat-raised-button *ngIf="turno.especialidad && turno.profecional && turno.hora && turno.fecha; else elseTurno" color="primary" (click)="onSubmitAlta()">
             <span>Generar turno</span><mat-icon>person</mat-icon>
         </button>
         <ng-template #elseTurno>

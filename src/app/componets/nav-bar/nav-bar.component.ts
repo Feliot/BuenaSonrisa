@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { Usuario, miUsuario, miUserCol, UserCol } from 'src/app/models/usuario';
 import { UserColServiceService } from 'src/app/services/user-col-service.service';
-
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { AcercaDeComponent } from '../acerca-de/acerca-de.component';
 
 @Component({
   selector: 'app-nav-bar',
@@ -18,7 +19,9 @@ export class NavBarComponent implements OnInit {
   public isLogin : boolean;
   public isCliente : boolean;
   public isEspecialista : boolean;
-  constructor(private miAuth: UserServiceService, private usersS: UserColServiceService){
+  constructor(private miAuth: UserServiceService, 
+    private usersS: UserColServiceService,
+    public dialog: MatDialog){
     this.myUserCol  = new miUserCol("","","","");
     if (localStorage.getItem('token')) {
     this.token= localStorage.getItem('token');
@@ -41,7 +44,7 @@ export class NavBarComponent implements OnInit {
             .subscribe(r=>{
               this.usersS.setUser(r[0]);
              this.myUserCol= this.usersS.getUser();
-             console.log(this.myUserCol.tipo)
+            /*  console.log(this.myUserCol.tipo) */
              if (this.myUserCol.tipo == 'administrador'){ 
                this.isAdmin = true;}
               else if(this.myUserCol.tipo == 'especialista'){
@@ -54,7 +57,7 @@ export class NavBarComponent implements OnInit {
               this.isEspecialista= false;
               this.isCliente= false;}
             })
-           console.log(this.myUsuario);
+          /*  console.log(this.myUsuario); */
            this.isLogin = true;
           
           
@@ -98,5 +101,12 @@ export class NavBarComponent implements OnInit {
   bajarvol(){
     this.audio.volume>0.2?this.audio.volume= this.audio.volume - 0.1:this.audio.volume = 0.1
    /*  console.log(this.audio.volume) */
+  }
+  abrirAcercaDe(){
+    const dialogRef = this.dialog.open(AcercaDeComponent, {data: ''});
+    dialogRef.afterClosed().subscribe(result => {
+      result= result==undefined?'Gracias!':result;
+      console.log(`acerca de dijo: ${result}`);
+    });
   }
 }
